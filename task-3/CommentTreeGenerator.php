@@ -12,14 +12,14 @@ class CommentTreeGenerator
     {
         $res = [];
         foreach ($comments as &$item) {
-            if ($item[1] != $item[0]) {
+            if ($item[1] !== $item[0]) {
                 $comments[$item[1] - 1][] =& $item;
             }
         }
         unset($item);
 
         foreach ($comments as $item) {
-            if ($item[1] == $item[0]) {
+            if ($item[1] === $item[0]) {
                 $res[] = $item;
             }
         }
@@ -33,9 +33,7 @@ class CommentTreeGenerator
     public function renderTree(array $commentsTree): void
     {
         foreach($commentsTree as $comment) {
-            if (is_string($comment)) {
-                echo '<li>'.$comment.'</li>';
-            }
+            if (is_string($comment)) echo '<li>'.$comment.'</li>';
 
             if (is_array($comment)) {
                 echo '<ul>';
